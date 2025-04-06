@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RestaurantManagement.Views.OrderItemsPage"
+             Title="Order Items">
+
+    <StackLayout Padding="10" BackgroundColor="#F1F8E9">
+        
+
+        <!-- light green background -->
+        <Label Text="🍹 Order Items"
+               FontSize="26"
+               FontAttributes="Bold"
+               TextColor="#33691E"
+               Margin="10,10,10,5" />
+
+        <ListView x:Name="OrderItemsListView"
+                  HasUnevenRows="True"
+                  SeparatorColor="Transparent">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame BackgroundColor="#FFFFFF"
+                               CornerRadius="10"
+                               Padding="15"
+                               Margin="10,5"
+                               HasShadow="True"
+                               BorderColor="#AED581">
+                            <StackLayout Spacing="6">
+                                <Label Text="{Binding DrinkId, StringFormat='🆔 Drink ID: {0}'}"
+                                       FontSize="16"
+                                       TextColor="#D84315" />
+                                <Label Text="{Binding DrinkName, StringFormat='🥤 Drink: {0}'}"
+                                       FontSize="18"
+                                       FontAttributes="Bold"
+                                       TextColor="#33691E" />
+                                <Label Text="{Binding Quantity, StringFormat='🔢 Quantity: {0}'}"
+                                       FontSize="16"
+                                       TextColor="#4E342E" />
+                                <Label Text="{Binding Price, StringFormat='💵 Price: ${0:F2}'}"
+                                       FontSize="16"
+                                       TextColor="#1B5E20" />
+                            </StackLayout>
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

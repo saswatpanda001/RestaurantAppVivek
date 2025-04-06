@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RestaurantManagement.Views.Checkout">
+    <ContentPage.Content>
+        <ScrollView>
+
+            <Grid Padding="10" RowSpacing="10" ColumnSpacing="0">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <!-- Title -->
+                    <RowDefinition Height="Auto"/>
+                    <!-- Billing Address -->
+                    <RowDefinition Height="Auto"/>
+                    <!-- Payment Method -->
+                    <RowDefinition Height="Auto"/>
+                    <!-- Button -->
+                </Grid.RowDefinitions>
+                <Button Text="🏠 Home" Clicked="OnHomeClicked" 
+                    BackgroundColor="Transparent" TextColor="Blue" 
+                    HorizontalOptions="Start" FontAttributes="Bold"/>
+
+
+                <!-- Title -->
+                <Label Text="Checkout"
+                       FontSize="26"
+                       FontAttributes="Bold"
+                       TextColor="#333"
+                       HorizontalOptions="Center"
+                       Margin="0,10"
+                       Grid.Row="0"/>
+
+                <!-- Billing Address -->
+                <Frame BackgroundColor="White" CornerRadius="10" Padding="15" HasShadow="True" Grid.Row="1">
+                    <StackLayout Spacing="8">
+                        <Label Text="Billing Information" FontSize="18" TextColor="#FF5722"/>
+                        <Entry x:Name="FullNameEntry" Placeholder="Full Name" FontSize="16" TextColor="#333"/>
+                        <Entry x:Name="AddressEntry" Placeholder="Address" FontSize="16" TextColor="#333"/>
+                        <Entry x:Name="PhoneEntry" Placeholder="Phone Number" FontSize="16" Keyboard="Telephone" TextColor="#333"/>
+                    </StackLayout>
+                </Frame>
+
+                <!-- Payment Method -->
+                <Frame BackgroundColor="White" CornerRadius="10" Padding="15" HasShadow="True" Grid.Row="2">
+                    <StackLayout Spacing="8">
+                        <Label Text="Payment Method" FontSize="18" TextColor="#FF5722"/>
+
+                        <Picker x:Name="PaymentPicker" Title="Select Payment Method">
+                            <Picker.Items>
+                                <x:String>Credit Card</x:String>
+                                <x:String>Debit Card</x:String>
+                                <x:String>PayPal</x:String>
+                                <x:String>Cash on Delivery</x:String>
+                            </Picker.Items>
+                        </Picker>
+
+                        <!-- ✅ Total Price Display -->
+                        <Label x:Name="TotalPriceLabel"
+               FontSize="16"
+               TextColor="#333"
+               FontAttributes="Bold"
+               HorizontalOptions="End" />
+                    </StackLayout>
+                </Frame>
+
+
+                <!-- Place Order Button -->
+                <Button Text="Place Order"
+                        BackgroundColor="#FF5722"
+                        TextColor="White"
+                        FontSize="18"
+                        CornerRadius="25"
+                        HeightRequest="50"
+                        Grid.Row="3"
+                        Margin="0,10"
+                        Clicked="PlaceOrderClicked"/>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

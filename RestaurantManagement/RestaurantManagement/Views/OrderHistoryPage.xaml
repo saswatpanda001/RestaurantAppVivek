@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RestaurantManagement.Views.OrderHistoryPage"
+             Title="Order History">
+
+    <StackLayout Padding="10" BackgroundColor="#FFFDE7">
+        <Button Text="🏠 Home" Clicked="OnHomeClicked" 
+                    BackgroundColor="Transparent" TextColor="Blue" 
+                    HorizontalOptions="Start" FontAttributes="Bold"/>
+
+        <!-- light yellow bg -->
+        <Label Text="📜 Your Past Orders" FontSize="26" FontAttributes="Bold" TextColor="#BF360C" Margin="10,5"/>
+
+        <ListView x:Name="OrdersListView"
+                  ItemsSource="{Binding OrderHistory}"
+                  HasUnevenRows="True"
+                  SeparatorColor="Transparent"
+                  ItemTapped="OrdersListView_ItemTapped">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame BackgroundColor="#FFFFFF"
+                               CornerRadius="12"
+                               Padding="15"
+                               Margin="10"
+                               HasShadow="True"
+                               BorderColor="#FFAB00">
+                            <StackLayout Spacing="6">
+                                <Label Text="{Binding OrderId, StringFormat='🆔 Order ID: {0}'}" FontSize="18" FontAttributes="Bold" TextColor="#D84315" />
+                                <Label Text="{Binding OrderDate, StringFormat='📅 Date: {0:dd MMM yyyy}'}" FontSize="16" TextColor="#4E342E" />
+                                <Label Text="{Binding FullName, StringFormat='👤 Name: {0}'}" FontSize="16" TextColor="#3E2723" />
+                                <Label Text="{Binding Address, StringFormat='📍 Address: {0}'}" FontSize="16" TextColor="#3E2723" LineBreakMode="WordWrap"/>
+                                <Label Text="{Binding PhoneNumber, StringFormat='📞 Phone: {0}'}" FontSize="16" TextColor="#3E2723" />
+                                <Label Text="{Binding PaymentMethod, StringFormat='💳 Payment: {0}'}" FontSize="16" TextColor="#3E2723" />
+                                <Label Text="{Binding TotalPrice, StringFormat='💰 Total: ${0:F2}'}" FontSize="16" FontAttributes="Bold" TextColor="#1B5E20" />
+                                <Label Text="👆 Tap to view items" FontSize="14" TextColor="#607D8B" HorizontalOptions="End"/>
+                            </StackLayout>
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

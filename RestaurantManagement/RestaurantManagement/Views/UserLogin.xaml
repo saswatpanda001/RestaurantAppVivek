@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RestaurantManagement.Views.UserLogin">
+
+    <Grid>
+        <!-- Overlay for better text visibility -->
+        <Grid.Background>
+            <LinearGradientBrush>
+                <GradientStop Color="Blue" Offset="0.1" />
+                <GradientStop Color="Pink" Offset="0.7" />
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <StackLayout Padding="30" VerticalOptions="Center" HorizontalOptions="Center">
+            <Label Text="Welcome Back!"
+                   FontSize="32"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   HorizontalOptions="Center" />
+
+            <Label Text="Login to continue"
+                   FontSize="18"
+                   TextColor="White"
+                   HorizontalOptions="Center"
+                   Margin="0,10,0,30" />
+
+            <Frame BackgroundColor="#FFFFFF" CornerRadius="20" Padding="20" Opacity="0.9">
+                <StackLayout>
+                    <Entry x:Name="EmailEntry" Placeholder="Email" Keyboard="Email" FontSize="18" TextColor="#333" />
+                    <Entry x:Name="PasswordEntry" Placeholder="Password" IsPassword="True" FontSize="18" TextColor="#333" />
+
+                    <Button Text="Login"
+                            BackgroundColor="#FF5722"
+                            TextColor="White"
+                            CornerRadius="25"
+                            FontSize="20"
+                            Padding="10"
+                            Clicked="OnLoginClicked" />
+
+                    <Button Text="Forgot Password?"
+                            BackgroundColor="Transparent"
+                            TextColor="#FF5722"
+                            FontSize="16"
+                            Margin="0,10,0,0"
+                            Clicked="OnClickedForgotPassword"/>
+                </StackLayout>
+            </Frame>
+
+            <Button Text="New here? Sign Up"
+                    BackgroundColor="Transparent"
+                    TextColor="Black"
+                    FontSize="18"
+                    Margin="0,20,0,0"
+                    Clicked="OnGoToSignUpClicked" />
+        </StackLayout>
+    </Grid>
+</ContentPage>

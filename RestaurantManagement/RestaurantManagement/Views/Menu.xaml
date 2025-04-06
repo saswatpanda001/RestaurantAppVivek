@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RestaurantManagement.Views.Menu"
+             BackgroundColor="#FAF3E0">
+
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="20">
+            <Button Text="🏠 Home" Clicked="OnHomeClicked" 
+                    BackgroundColor="Transparent" TextColor="Blue" 
+                    HorizontalOptions="Start" FontAttributes="Bold"/>
+
+            
+            <!-- Page Title -->
+            <Label Text="Drinks Menu"
+                   FontSize="32"
+                   FontAttributes="Bold"
+                   TextColor="#2C3E50"
+                   HorizontalOptions="Center"/>
+
+            <!-- Category Dropdown -->
+            <Label Text="Select Category"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="#34495E"/>
+
+            <Picker x:Name="CategoryPicker"
+                    Title="Choose a category"
+                    SelectedIndexChanged="OnCategorySelected"
+                    FontSize="16"
+                    TextColor="#2C3E50"/>
+
+            <!-- Drinks List -->
+            <CollectionView x:Name="DrinksCollectionView">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="15" Margin="10" CornerRadius="10" BackgroundColor="White" HasShadow="True">
+                            <StackLayout>
+                                <Label Text="{Binding Name}" FontSize="18" FontAttributes="Bold" TextColor="#2C3E50"/>
+                                <Label Text="{Binding Description}" FontSize="14" TextColor="#7F8C8D"/>
+                                <Label Text="{Binding Price, StringFormat='Price: {0:C}'}" FontSize="16" TextColor="#7F8C8D"/>
+                                <Button Text="See Details"
+                                    BackgroundColor="#FF6F61"
+                                    TextColor="White"
+                                    CornerRadius="20"
+                                    Clicked="GoToDrinkDetails"
+                                    CommandParameter="{Binding}" />
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

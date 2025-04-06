@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RestaurantManagement.Views.Home"
+             BackgroundColor="#FAF3E0">
+
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="20">
+            <Button Text="🏠 Logout" Clicked="OnHomeClicked" 
+                    BackgroundColor="Transparent" TextColor="Blue" 
+                    HorizontalOptions="Start" FontAttributes="Bold"/>
+
+
+            <!-- Logo -->
+            <Image Source="drink.png"
+                   HeightRequest="100"
+                   HorizontalOptions="Center" />
+
+            <!-- Welcome Message -->
+            <Label x:Name="WelcomeLabel"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   TextColor="#2C3E50"
+                   HorizontalOptions="Center" />
+
+            <!-- Order Statistics -->
+            <StackLayout Spacing="15">
+
+                <!-- First Row: Total Orders & Total Price -->
+                <Grid ColumnSpacing="15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Total Orders Card -->
+                    <Frame BackgroundColor="#FFA726"  
+                        CornerRadius="12"
+               Padding="15"
+               HasShadow="True"
+               Grid.Column="0">
+                        <StackLayout>
+                            <Label Text="Total Orders" FontSize="16" FontAttributes="Bold" TextColor="White" />
+                            <Label x:Name="TotalOrdersLabel" FontSize="24" FontAttributes="Bold" TextColor="White" />
+                        </StackLayout>
+                    </Frame>
+
+                    <!-- Total Price Card -->
+                    <Frame BackgroundColor="#FB8C00"
+               CornerRadius="12"
+               Padding="15"
+               HasShadow="True"
+               Grid.Column="1">
+                        <StackLayout>
+                            <Label Text="Total Price" FontSize="16" FontAttributes="Bold" TextColor="White" />
+                            <Label x:Name="TotalPriceLabel" FontSize="24" FontAttributes="Bold" TextColor="White" />
+                        </StackLayout>
+                    </Frame>
+                </Grid>
+
+                <!-- Second Row: Total Items -->
+                <Frame BackgroundColor="#F57C00"
+           CornerRadius="12"
+           Padding="15"
+           HasShadow="True"
+           HorizontalOptions="Center"
+           WidthRequest="160">
+                    <StackLayout>
+                        <Label Text="Total Items" FontSize="16" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center" />
+                        <Label x:Name="TotalOrderItemsLabel" FontSize="24" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center"/>
+                    </StackLayout>
+                </Frame>
+
+            </StackLayout>
+
+
+
+            <Label Text="Best Selling Drinks"
+       FontSize="24"
+       FontAttributes="Bold"
+       TextColor="#34495E"
+       Margin="0,10,0,10" />
+
+            <CollectionView x:Name="BestSellingDrinksCollectionView"
+                ItemsSource="{Binding .}"  
+                HorizontalScrollBarVisibility="Never"
+                Margin="0,10"
+                HeightRequest="400">
+
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame CornerRadius="10"
+                   Padding="15"
+                   Margin="5"
+                   HasShadow="True"
+                   BackgroundColor="White">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer
+                        Command="{Binding BindingContext.DrinkTappedCommand, Source={x:Reference BestSellingDrinksCollectionView}}"
+                        CommandParameter="{Binding .}" />
+                            </Frame.GestureRecognizers>
+
+                            <StackLayout>
+                                <Label Text="{Binding Name}"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="#2C3E50" />
+
+                                <Label Text="{Binding Description}"
+                           FontSize="14"
+                           TextColor="#555" />
+
+                                <Label Text="{Binding Price, StringFormat='₹{0:F2}'}"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="#43A047"
+                           HorizontalOptions="End" />
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+
+
+            
+            <!-- Navigation Buttons -->
+            <Button Text="Menu"
+                    BackgroundColor="#FF6F61"
+                    TextColor="White"
+                    CornerRadius="20"
+                    Clicked="GoToMenu" />
+            <Button Text="Order History"
+                    BackgroundColor="#FF6F61"
+                    TextColor="White"
+                    CornerRadius="20"
+                    Clicked="GoToOrders" />
+            <Button Text="Cart"
+                    BackgroundColor="#FF6F61"
+                    TextColor="White"
+                    CornerRadius="20"
+                    Clicked="GoToCart" />
+            <Button Text="Logout"
+                    BackgroundColor="#FF6F61"
+                    TextColor="White"
+                    CornerRadius="20"
+                    Clicked="GoToLogout" />
+
+            <!-- Footer -->
+            <Label Text="© 2025 Refresh Beverages"
+                   FontSize="14"
+                   TextColor="#7F8C8D"
+                   HorizontalOptions="Center"
+                   Margin="20,40,20,20" />
+
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

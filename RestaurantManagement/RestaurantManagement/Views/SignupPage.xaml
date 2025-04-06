@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RestaurantManagement.Views.SignupPage">
+    <ContentPage.Content>
+        <StackLayout Padding="30" VerticalOptions="Center">
+            <Label Text="Sign Up" FontSize="32" FontAttributes="Bold" HorizontalOptions="Center" />
+
+            <!-- Username, Email, and Password Fields -->
+            <Entry x:Name="UsernameEntry" Placeholder="Username" />
+            <Entry x:Name="EmailEntry" Placeholder="Email" Keyboard="Email" />
+            <Entry x:Name="PasswordEntry" Placeholder="Password" IsPassword="True" />
+            <Entry x:Name="ConfirmPasswordEntry" Placeholder="Confirm Password" IsPassword="True" />
+
+            <!-- Sign Up Button -->
+            <Button Text="Sign Up" BackgroundColor="#FF5722" TextColor="White" Clicked="OnSignUpClicked" />
+
+            <!-- Link to Login page -->
+            <Button Text="Already have an account? Login" BackgroundColor="Transparent" TextColor="#FF5722" Clicked="OnGoToLoginClicked" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:RestaurantManagement.Models"
+             x:Class="RestaurantManagement.Views.CartPage"
+             Title="Your Cart"
+             BackgroundColor="#F5F5F5">
+
+    <StackLayout Padding="20" Spacing="15">
+        <Button Text="🏠 Home" Clicked="OnHomeClicked" 
+                    BackgroundColor="Transparent" TextColor="Blue" 
+                    HorizontalOptions="Start" FontAttributes="Bold"/>
+
+
+        <!-- Header -->
+        <Label Text="🛒 Your Cart"
+               FontSize="28"
+               FontAttributes="Bold"
+               TextColor="#3E2723"
+               HorizontalOptions="Center" />
+
+        <!-- Cart Items -->
+        <ListView x:Name="CartListView"
+                  ItemsSource="{Binding CartItems}"
+                  HasUnevenRows="True"
+                  SeparatorVisibility="None"
+                  BackgroundColor="Transparent">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="models:Cart">
+                    <ViewCell>
+                        <Frame BackgroundColor="White"
+                               CornerRadius="12"
+                               Padding="12"
+                               Margin="0,5"
+                               HasShadow="True"
+                               BorderColor="#D7CCC8">
+                            <StackLayout Spacing="8">
+
+                                <!-- Drink Name & Price -->
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Text="{Binding Drink.Name}"
+                                           FontSize="18"
+                                           FontAttributes="Bold"
+                                           TextColor="#4E342E"
+                                           Grid.Column="0" />
+
+                                    <Label Text="{Binding Drink.Price, StringFormat='₹{0:F2}'}"
+                                           FontSize="16"
+                                           TextColor="#616161"
+                                           Grid.Column="1"
+                                           HorizontalOptions="End" />
+                                </Grid>
+
+                                <Grid VerticalOptions="Center" ColumnSpacing="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Text="Qty:" VerticalOptions="Center" TextColor="#795548" Grid.Column="0"/>
+
+                                    <Entry Text="{Binding Quantity, Mode=TwoWay}"
+           WidthRequest="50"
+           Keyboard="Numeric"
+           BackgroundColor="#EFEBE9"
+           TextColor="#3E2723"
+           FontAttributes="Bold"
+           HorizontalOptions="Start"
+           Grid.Column="1"/>
+
+                                    <!-- Spacer -->
+                                    <BoxView Grid.Column="2" />
+
+                                    <!-- Simplified Update Button -->
+                                    <Button Grid.Column="3"
+            WidthRequest="36"
+            HeightRequest="36"
+            BackgroundColor="#FFB74D"
+            CornerRadius="18"
+            Text="↻"
+            FontSize="18"
+            TextColor="White"
+            CommandParameter="{Binding .}"
+            Clicked="OnUpdateQuantity"/>
+                                </Grid>
+
+                                <!-- Remove Button -->
+                                <Button Text="Remove"
+                                        BackgroundColor="#E57373"
+                                        TextColor="White"
+                                        CornerRadius="8"
+                                        FontSize="14"
+                                        HeightRequest="36"
+                                        CommandParameter="{Binding .}"
+                                        Clicked="OnRemoveItem"/>
+                            </StackLayout>
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+
+        <StackLayout>
+            <Label x:Name="TotalLabel"
+                   Text="{Binding TotalPrice, StringFormat='Total Price: ${0:F2}'}"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="#1B5E20"
+                   Grid.Column="1"
+                   HorizontalOptions="End"
+                   VerticalOptions="Center" />
+        </StackLayout>
+
+
+
+
+
+        <!-- Total & Order -->
+        <Frame BackgroundColor="White"
+       CornerRadius="12"
+       Padding="15"
+       HasShadow="True"
+       BorderColor="#D7CCC8">
+
+            <StackLayout Spacing="20">
+
+
+                <!-- Place Order Button -->
+                <Button Text="Place Order"
+                BackgroundColor="#43A047"
+                TextColor="White"
+                FontSize="18"
+                CornerRadius="8"
+                HeightRequest="48"
+                Clicked="OnClickedOrder"/>
+            </StackLayout>
+        </Frame>
+
+        
+
+
+    </StackLayout>
+</ContentPage>

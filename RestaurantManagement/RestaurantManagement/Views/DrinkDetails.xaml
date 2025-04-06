@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RestaurantManagement.Views.DrinkDetails"
+             BackgroundColor="#FFF8E1">
+    <!-- Soft warm background -->
+
+    <ScrollView>
+        <StackLayout VerticalOptions="CenterAndExpand"
+                     HorizontalOptions="CenterAndExpand"
+                     Padding="20"
+                     Spacing="30">
+
+            <!-- Card-like Frame -->
+            <Frame BackgroundColor="White"
+                   CornerRadius="15"
+                   Padding="25"
+                   HasShadow="True"
+                   WidthRequest="320"
+                   BorderColor="#FFCC80">
+
+                <StackLayout Spacing="20">
+                    <Button Text="🏠 Home" Clicked="OnHomeClicked" 
+                    BackgroundColor="Transparent" TextColor="Blue" 
+                    HorizontalOptions="Start" FontAttributes="Bold"/>
+
+                    
+
+                    <!-- Drink Name -->
+                    <Label Text="{Binding Name}"
+                           FontSize="30"
+                           FontAttributes="Bold"
+                           TextColor="#E65100"
+                           HorizontalOptions="Center" />
+
+                    <!-- Description -->
+                    <Label Text="{Binding Description}"
+                           FontSize="16"
+                           TextColor="#6D4C41"
+                           HorizontalOptions="Center"
+                           HorizontalTextAlignment="Center" />
+
+                    <!-- Price -->
+                    <Label Text="{Binding Price, StringFormat='💰 Price: {0:C}'}"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="#2E7D32"
+                           HorizontalOptions="Center" />
+
+                    <!-- Quantity Entry -->
+                    <StackLayout Orientation="Horizontal"
+                                 HorizontalOptions="Center"
+                                 Spacing="10">
+                        <Label Text="Quantity:"
+                               FontSize="18"
+                               VerticalOptions="Center"
+                               TextColor="#4E342E"/>
+                        <Entry x:Name="QuantityEntry"
+                               Keyboard="Numeric"
+                               WidthRequest="80"
+                               Placeholder="e.g. 1"
+                               BackgroundColor="#FFF3E0"
+                               TextColor="#4E342E"
+                               FontAttributes="Bold"/>
+                    </StackLayout>
+
+                    <!-- Add to Cart Button -->
+                    <Button Text="🛒 Add to Cart"
+                            BackgroundColor="#FF7043"
+                            TextColor="White"
+                            FontSize="18"
+                            CornerRadius="25"
+                            Clicked="AddToCart"
+                            HorizontalOptions="FillAndExpand"
+                            HeightRequest="50"/>
+
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
